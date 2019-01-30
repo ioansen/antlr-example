@@ -12,7 +12,7 @@ public class PostfixResultBuilder extends PostfixBaseListener {
     private Stack<Integer> numbersStack = new Stack<>();
 
     @Override
-    public void enterExpr(PostfixParser.ExprContext ctx) {
+    public void enterNum(NumContext ctx) {
         numbersStack.push(Integer.parseInt(ctx.INT().toString()));
     }
 

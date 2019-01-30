@@ -1,8 +1,11 @@
 grammar Postfix;
 import CommonLexerRules;
 
-expr:   INT (expr sign)? NEWLINE?
+expr:   num NEWLINE?
+    |   expr expr sign NEWLINE?
     ;
+
+num:    INT ;
 
 sign: op=('+'|'-'|'*'|'/')  ;
 
