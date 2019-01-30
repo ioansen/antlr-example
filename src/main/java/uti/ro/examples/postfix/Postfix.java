@@ -12,10 +12,10 @@ import uti.ro.examples.gen.postfix.PostfixParser;
 public class Postfix {
 
     private int result;
-    private PostfixStringToResult converter;
+    private PostfixResultBuilder converter;
 
     {
-        converter = new PostfixStringToResult();
+        converter = new PostfixResultBuilder();
     }
 
 

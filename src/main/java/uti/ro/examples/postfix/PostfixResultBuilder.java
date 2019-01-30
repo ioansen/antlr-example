@@ -4,7 +4,7 @@ package uti.ro.examples.postfix;
 import uti.ro.examples.gen.postfix.PostfixBaseListener;
 import uti.ro.examples.gen.postfix.PostfixParser;
 
-public class PostfixStringToResult extends PostfixBaseListener {
+public class PostfixResultBuilder extends PostfixBaseListener {
 
     private int result;
 
