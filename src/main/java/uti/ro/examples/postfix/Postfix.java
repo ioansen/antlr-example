@@ -39,7 +39,7 @@ public class Postfix {
     private ParseTree tree(String expression){
         PostfixLexer lexer = lexer(expression);
         PostfixParser parser = parser(lexer);
-        return parser.expr();
+        return parser.stat();
     }
 
     public int result(){

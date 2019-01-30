@@ -27,7 +27,7 @@ public class PostfixTest {
     }
 
     @Test
-    public void testComplexAddition(){
+    public void testComplexIntAddition(){
         Postfix postfix = new Postfix("3 4 + 5 6 + + 7 +");
         assertEquals(25, postfix.result());
     }
@@ -51,7 +51,7 @@ public class PostfixTest {
     }
 
     @Test
-    public void testAllOperationsAtOnce(){
+    public void testIntAllOperationsAtOnce(){
         Postfix postfix = new Postfix("15 7 1 1 + - / 3 * 2 1 1 + + -");
         assertEquals(5, postfix.result());
     }
