@@ -1,4 +1,4 @@
-grammar postfix;
+grammar Postfix;
 import CommonLexerRules;
 
 stat:   INT

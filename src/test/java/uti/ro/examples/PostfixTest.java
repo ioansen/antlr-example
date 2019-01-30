@@ -1,9 +1,11 @@
 package uti.ro.examples;
 
 import org.junit.Test;
+import uti.ro.examples.postfix.Postfix;
+
 import static org.junit.Assert.*;
 
-public class ExprTest {
+public class PostfixTest {
 
 
     @Test
