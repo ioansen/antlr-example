@@ -3,37 +3,41 @@ package uti.ro.examples.postfix;
 
 import uti.ro.examples.gen.postfix.PostfixBaseListener;
 import uti.ro.examples.gen.postfix.PostfixParser;
+import static uti.ro.examples.gen.postfix.PostfixParser.*;
+
+import java.util.Stack;
 
 public class PostfixResultBuilder extends PostfixBaseListener {
 
-    private int result;
+    private Stack<Integer> numbersStack = new Stack<>();
 
     @Override
-    public void enterStat(PostfixParser.StatContext ctx) {
-        result = Integer.parseInt(ctx.INT().toString());
+    public void enterExpr(PostfixParser.ExprContext ctx) {
+        numbersStack.push(Integer.parseInt(ctx.INT().toString()));
     }
 
     @Override
-    public void enterAdd(PostfixParser.AddContext ctx) {
-        result += Integer.parseInt(ctx.INT().toString());
-    }
+    public void enterSign(SignContext ctx) {
+        int secondOp = numbersStack.pop();
+        int firstOp = numbersStack.pop();
 
-    @Override
-    public void enterSub(PostfixParser.SubContext ctx) {
-        result -= Integer.parseInt(ctx.INT().toString());
-    }
-
-    @Override
-    public void enterMul(PostfixParser.MulContext ctx) {
-        result *= Integer.parseInt(ctx.INT().toString());
-    }
-
-    @Override
-    public void enterDiv(PostfixParser.DivContext ctx) {
-        result /= Integer.parseInt(ctx.INT().toString());
+        switch (ctx.op.getType()){
+            case ADD:
+                numbersStack.push(firstOp + secondOp);
+                break;
+            case SUB:
+                numbersStack.push(firstOp - secondOp);
+                break;
+            case MUL:
+                numbersStack.push(firstOp * secondOp);
+                break;
+            case DIV:
+                numbersStack.push(firstOp / secondOp);
+                break;
+        }
     }
 
     int getResult(){
-        return result;
+        return numbersStack.pop();
     }
 }

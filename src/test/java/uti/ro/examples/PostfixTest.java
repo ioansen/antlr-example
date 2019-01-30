@@ -15,9 +15,15 @@ public class PostfixTest {
     }
 
     @Test
-    public void testIntAddition(){
+    public void testSimpleIntAddition(){
         Postfix postfix = new Postfix("3 4 +");
         assertEquals(7, postfix.result());
+    }
+
+    @Test
+    public void testTripleIntAddition(){
+        Postfix postfix = new Postfix("3 4 5 6 + + +");
+        assertEquals(18, postfix.result());
     }
 
     @Test

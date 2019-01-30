@@ -1,23 +1,12 @@
 grammar Postfix;
 import CommonLexerRules;
 
-stat:   INT
-    |   INT NEWLINE
-    |   INT expr
-    |   INT expr NEWLINE
-    |   NEWLINE
+expr:   INT (expr sign)? NEWLINE?
     ;
 
-expr:   add
-    |   sub
-    |   mul
-    |   div
-    ;
+sign: op=('+'|'-'|'*'|'/')  ;
 
-add :   INT '+' ;
-
-sub :   INT '-' ;
-
-mul :   INT '*' ;
-
-div :   INT '/' ;
+ADD :   '+' ;
+SUB :   '-' ;
+MUL :   '*' ;
+DIV :   '/' ;
