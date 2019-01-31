@@ -1,9 +1,9 @@
 package uti.ro.examples.postfix;
 
 
-import uti.ro.examples.gen.postfix.PostfixBaseListener;
+import uti.ro.examples.postfix.gen.PostfixBaseListener;
 
-import static uti.ro.examples.gen.postfix.PostfixParser.*;
+import static uti.ro.examples.postfix.gen.PostfixParser.*;
 
 import java.util.Stack;
 

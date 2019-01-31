@@ -5,8 +5,8 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import uti.ro.examples.gen.postfix.PostfixLexer;
-import uti.ro.examples.gen.postfix.PostfixParser;
+import uti.ro.examples.postfix.gen.PostfixLexer;
+import uti.ro.examples.postfix.gen.PostfixParser;
 
 
 public class Postfix {
