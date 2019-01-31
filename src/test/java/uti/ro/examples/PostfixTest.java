@@ -64,8 +64,8 @@ public class PostfixTest {
 
     @Test
     public void testIntOperationsWithNegative(){
-        Postfix postfix = new Postfix("-1 -2 -3 + + -4 +");
-        assertEquals(-10, postfix.result());
+        Postfix postfix = new Postfix("-1 -2 -3 + + -4 -");
+        assertEquals(-2, postfix.result());
     }
 
 }

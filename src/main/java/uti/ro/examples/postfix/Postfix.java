@@ -12,18 +12,20 @@ import uti.ro.examples.gen.postfix.PostfixParser;
 public class Postfix {
 
     private int result;
-    private PostfixResultBuilder converter;
-
-    {
-        converter = new PostfixResultBuilder();
-    }
-
 
     public Postfix(String expression){
-        ParseTree tree = tree(expression);
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(converter, tree);
-        result = converter.getResult();
+        this.result = buildResultFromExpression(expression);
+    }
+
+    private int buildResultFromExpression(String expression){
+        ParseTree tree = buildTreeFromExpression(expression);
+        return buildResultFromTree(tree);
+    }
+
+    private ParseTree buildTreeFromExpression(String expression){
+        PostfixLexer lexer = lexer(expression);
+        PostfixParser parser = parser(lexer);
+        return parser.stat();
     }
 
     private PostfixLexer lexer(String expression){
@@ -36,10 +38,11 @@ public class Postfix {
         return new PostfixParser(tokens);
     }
 
-    private ParseTree tree(String expression){
-        PostfixLexer lexer = lexer(expression);
-        PostfixParser parser = parser(lexer);
-        return parser.stat();
+    private int buildResultFromTree(ParseTree tree){
+        ParseTreeWalker walker = new ParseTreeWalker();
+        PostfixResultBuilder resultBuilder = new PostfixResultBuilder();
+        walker.walk(resultBuilder, tree);
+        return resultBuilder.getResult();
     }
 
     public int result(){
