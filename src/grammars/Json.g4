@@ -4,23 +4,23 @@ json:   object
     |   array
     ;
 
-object: '{' pair (',' pair)* '}'
-    |   '{' '}'
+object: '{' pair (',' pair)* '}'    # anObject
+    |   '{' '}'                     # emptyObject
     ;
 
 pair:   STRING ':' value;
 
-array:  '[' value (',' value)* ']'
-    |   '[' ']'
+array:  '[' value (',' value)* ']'  # anArray
+    |   '[' ']'                     # emptyArray
     ;
 
-value:  STRING
-    |   NUMBER
-    |   object
-    |   array
-    |   'true'
-    |   'false'
-    |   'null'
+value:  STRING      # string
+    |   NUMBER      # atom
+    |   object      # objectValue
+    |   array       # arrayValue
+    |   'true'      # atom
+    |   'false'     # atom
+    |   'null'      # atom
     ;
 
 STRING : '"' (ESC | ~["\\])* '"' ;
