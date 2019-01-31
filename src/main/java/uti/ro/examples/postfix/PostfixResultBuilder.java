@@ -2,7 +2,7 @@ package uti.ro.examples.postfix;
 
 
 import uti.ro.examples.gen.postfix.PostfixBaseListener;
-import uti.ro.examples.gen.postfix.PostfixParser;
+
 import static uti.ro.examples.gen.postfix.PostfixParser.*;
 
 import java.util.Stack;
@@ -10,6 +10,8 @@ import java.util.Stack;
 public class PostfixResultBuilder extends PostfixBaseListener {
 
     private Stack<Integer> numbersStack = new Stack<>();
+    private int firstOp;
+    private int secondOp;
 
     @Override
     public void enterNum(NumContext ctx) {
@@ -17,24 +19,36 @@ public class PostfixResultBuilder extends PostfixBaseListener {
     }
 
     @Override
-    public void enterSign(SignContext ctx) {
-        int secondOp = numbersStack.pop();
-        int firstOp = numbersStack.pop();
+    public void enterAdd(AddContext ctx) {
+        popOperands();
+        pushResult(firstOp + secondOp);
+    }
 
-        switch (ctx.op.getType()){
-            case ADD:
-                numbersStack.push(firstOp + secondOp);
-                break;
-            case SUB:
-                numbersStack.push(firstOp - secondOp);
-                break;
-            case MUL:
-                numbersStack.push(firstOp * secondOp);
-                break;
-            case DIV:
-                numbersStack.push(firstOp / secondOp);
-                break;
-        }
+    @Override
+    public void enterSub(SubContext ctx) {
+        popOperands();
+        pushResult(firstOp - secondOp);
+    }
+
+    @Override
+    public void enterMul(MulContext ctx) {
+        popOperands();
+        pushResult(firstOp * secondOp);
+    }
+
+    @Override
+    public void enterDiv(DivContext ctx) {
+        popOperands();
+        pushResult(firstOp / secondOp);
+    }
+
+    private void popOperands(){
+        secondOp = numbersStack.pop();
+        firstOp = numbersStack.pop();
+    }
+
+    private void pushResult(int result){
+        numbersStack.push(result);
     }
 
     int getResult(){

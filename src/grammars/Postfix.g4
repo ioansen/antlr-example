@@ -9,9 +9,9 @@ expr:   num
 
 num :   INT ;
 
-sign: op=('+'|'-'|'*'|'/')  ;
+sign:   '+'     # Add
+    |   '-'     # Sub
+    |   '*'     # Mul
+    |   '/'     # Div
+    ;
 
-ADD :   '+' ;
-SUB :   '-' ;
-MUL :   '*' ;
-DIV :   '/' ;
