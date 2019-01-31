@@ -25,7 +25,7 @@ public class Postfix {
     private ParseTree buildTreeFromExpression(String expression){
         PostfixLexer lexer = lexer(expression);
         PostfixParser parser = parser(lexer);
-        return parser.stat();
+        return parser.expr();
     }
 
     private PostfixLexer lexer(String expression){

@@ -9,18 +9,22 @@ import java.util.Stack;
 
 public class PostfixResultBuilder extends PostfixBaseListener {
 
-    private Stack<Integer> numbersStack = new Stack<>();
+    private Stack<Integer> stack = new Stack<>();
     private int firstOp;
     private int secondOp;
 
     @Override
     public void enterPositiveNum(PositiveNumContext ctx) {
-        numbersStack.push(Integer.parseInt(ctx.INT().toString()));
+        stack.push(stringToInt(ctx.INT().toString()));
     }
 
     @Override
     public void enterNegativeNum(NegativeNumContext ctx) {
-        numbersStack.push(-Integer.parseInt(ctx.INT().toString()));
+        stack.push(-stringToInt(ctx.INT().toString()));
+    }
+
+    private int stringToInt(String string){
+        return Integer.parseInt(string);
     }
 
     @Override
@@ -48,15 +52,15 @@ public class PostfixResultBuilder extends PostfixBaseListener {
     }
 
     private void popOperands(){
-        secondOp = numbersStack.pop();
-        firstOp = numbersStack.pop();
+        secondOp = stack.pop();
+        firstOp = stack.pop();
     }
 
     private void pushResult(int result){
-        numbersStack.push(result);
+        stack.push(result);
     }
 
     int getResult(){
-        return numbersStack.pop();
+        return stack.pop();
     }
 }
