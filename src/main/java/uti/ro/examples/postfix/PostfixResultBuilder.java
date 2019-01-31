@@ -14,8 +14,13 @@ public class PostfixResultBuilder extends PostfixBaseListener {
     private int secondOp;
 
     @Override
-    public void enterNum(NumContext ctx) {
+    public void enterPositiveNum(PositiveNumContext ctx) {
         numbersStack.push(Integer.parseInt(ctx.INT().toString()));
+    }
+
+    @Override
+    public void enterNegativeNum(NegativeNumContext ctx) {
+        numbersStack.push(-Integer.parseInt(ctx.INT().toString()));
     }
 
     @Override

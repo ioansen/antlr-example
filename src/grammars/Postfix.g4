@@ -7,11 +7,13 @@ expr:   num
     |   expr expr sign
     ;
 
-num :   INT ;
+num :   INT         # PositiveNum
+    |   '-' INT     # NegativeNum
+    ;
 
-sign:   '+'     # Add
-    |   '-'     # Sub
-    |   '*'     # Mul
-    |   '/'     # Div
+sign:   '+'         # Add
+    |   '-'         # Sub
+    |   '*'         # Mul
+    |   '/'         # Div
     ;
 
