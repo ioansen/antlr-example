@@ -7,7 +7,7 @@ expr:   num
     |   expr expr sign
     ;
 
-num:    INT ;
+num :   INT ;
 
 sign: op=('+'|'-'|'*'|'/')  ;
 
